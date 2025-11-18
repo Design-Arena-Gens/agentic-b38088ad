@@ -1,0 +1,100 @@
+/* CSS Reset (subset) */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; font-family: var(--font-sans, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji"); background: #0b0b0b; color: #f6f6f6; }
+
+:root {
+  --bg: #0b0b0b;
+  --fg: #f6f6f6;
+  --muted: #c9c9c9;
+  --accent: #a7c7ff;
+  --accent-2: #ffd1dc;
+}
+
+.container {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.phone-frame {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 9 / 16;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.scene-text {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 20px 16px 28px;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.0));
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.kicker { color: var(--muted); font-size: 14px; }
+.headline { font-size: 20px; line-height: 1.25; }
+
+.progress {
+  position: absolute;
+  top: 10px; left: 10px; right: 10px;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 6px;
+}
+.bar { height: 3px; background: rgba(255,255,255,0.25); border-radius: 999px; overflow: hidden; }
+.bar > span { display: block; height: 100%; width: var(--w, 0%); background: white; transition: width 120ms linear; }
+
+.controls {
+  position: absolute; top: 10px; right: 10px; display: flex; gap: 8px;
+}
+.control-btn { appearance: none; border: none; border-radius: 999px; padding: 6px 10px; font-weight: 600; background: rgba(0,0,0,0.45); color: white; backdrop-filter: blur(8px); cursor: pointer; }
+.control-btn:hover { background: rgba(0,0,0,0.6); }
+
+.badge {
+  position: absolute; top: 12px; left: 12px;
+  font-size: 12px; padding: 4px 8px; border-radius: 999px; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px);
+}
+
+.tap-audio {
+  position: absolute; bottom: 72px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.5); border-radius: 999px; padding: 10px 14px; font-size: 12px;
+}
+
+.bottom-cta {
+  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+}
+.cta-btn {
+  appearance: none; border: none; border-radius: 999px; padding: 10px 16px; font-weight: 700; font-size: 14px; letter-spacing: 0.3px; cursor: pointer;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #111;
+}
+
+.bg-cover { position: absolute; inset: 0; }
+.bg-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
+.bg-overlay { position: absolute; inset: 0; background: radial-gradient(120% 120% at 50% 90%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.9) 100%); }
+
+.fade-in { animation: fadeIn 700ms ease both; }
+.fade-out { animation: fadeOut 600ms ease both; }
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+@keyframes fadeOut { from { opacity: 1 } to { opacity: 0 } }
+
+.soft-pan { animation: softPan 6000ms ease-in-out infinite alternate; }
+@keyframes softPan { from { transform: scale(1.05) translateY(0px) } to { transform: scale(1.08) translateY(-6px) } }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in, .fade-out, .soft-pan { animation: none !important; }
+}
